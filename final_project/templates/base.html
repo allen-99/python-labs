@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+<head>
+    <!-- //Meta tag Keywords -->
+    <title>{% block title %} {% endblock title %}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+<body>
+<div id="page" class="page">
+
+    <ol class="breadcrumb editContent">
+        <li class="breadcrumb-item">
+            <a href="/" class="editContent">Главная страница</a>
+        </li>
+        <li>
+            {% if user.is_authenticated %}
+                <span> {{ user.username }} </span>
+                <a href="{% url 'account_logout' %}"> Выход</a>
+            {% else %}
+                <a href="{% url 'account_login' %}"> Вход</a>
+                <a href="{% url 'account_signup' %}"> Регситрация</a>
+            {% endif %}
+        </li>
+     {% if user.is_authenticated %}
+        <li>
+          <a href="/add_movie" class="addMovie"> Добавить фильм</a>
+        </li>
+         <li>
+          <a href="/add_category" class="addCategory"> Добавить категорию</a>
+        </li>
+          <li>
+          <a href="/add_genre" class="addGenre"> Добавить жанр</a>
+        </li>
+     {% endif %}
+    </ol>
+    {% block content %}
+
+    {% endblock content %}
+</div>
+</body>
+</html>

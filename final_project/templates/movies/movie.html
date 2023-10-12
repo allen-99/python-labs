@@ -1,0 +1,41 @@
+{% extends 'movies/base.html' %}
+
+{% block movie %}
+    <h3> <h4> Название: </h4> {{ movie.name }}</h3>
+    <div> <h4>Категория: </h4>  {{ movie.category }}</div>
+    <div> <h4>Описание: </h4>  {{ movie.description }}</div>
+    <div>
+        <h4>Жанры: </h4>
+        {% for genre in movie.genres.all %}
+            {{ genre.name }}
+        {% endfor %}
+    </div>
+    <div class="img-deals col-md-4">
+        <img src='{{ movie.photo.url }}' class="img-fluid" alt=""
+             style="outline: none; cursor: inherit;">
+    </div>
+    {% if user.is_authenticated %}
+        <form action="{% url 'add_review' movie.id %}" method='POST' user="user.is_authenticated">
+            {% csrf_token %}
+            <input type="search" placeholder="Введите заголовок..." name="title"
+                   class="form-control" required="">
+            <input type="search" placeholder="Введите описание..." name="text"
+                   class="form-control" required="">
+            <button class="btn1 btn" style="outline: none; cursor: inherit;">Отправить отзыв</button>
+        </form>
+    {% endif %}
+    <div>
+        <h2> Отзывы: </h2>
+        {% for review in  movie.comment_set.all %}
+
+            <div >
+               <hr>
+                <h4> {{ review.user }}</h4>
+                <h4> {{ review.title }}</h4>
+                <p>
+                    {{ review.text }}
+                </p>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock movie %}

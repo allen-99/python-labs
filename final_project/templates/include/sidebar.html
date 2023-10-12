@@ -1,0 +1,34 @@
+
+<!--preference -->
+
+<div class="left-side my-4">
+    <form action="{% url 'filter' %}" method="get">
+        <h3 class="sear-head editContent">Жанры</h3>
+        <ul class="w3layouts-box-list">
+            {% for genre in view.get_genres %}
+                <div>
+                    <input type="checkbox" class="checked" name="genre" value="{{ genre.id }}" />
+                    {{ genre.name }}
+                </div>
+            {% endfor %}
+        </ul>
+
+        <h3 class="sear-head editContent">Год</h3>
+        <ul class="w3layouts-box-list">
+            {% for movie in view.get_years %}
+                <div>
+                    <input type="checkbox" class="checked" name="year" value="{{ movie.year }}"/>
+                    {{ movie.year }}
+                </div>
+            {% endfor %}
+        </ul>
+
+        <button type="submit"> Найти</button>
+    </form>
+</div>
+
+
+
+
+
+
