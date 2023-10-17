@@ -121,22 +121,22 @@ rootTree = int(input('Input root tree: '))
 tree = BinaryTree(rootTree)
 
 while(True):
-    data_raw = input("Pleace enter value (add, remove, search, print): ")
+    data_raw = input("Please enter value (add, remove, search, print): ")
 
     if data_raw == "add":
-        value = input("Pleace enter value for insert into tree: ")
+        value = input("Please enter value for insert into tree: ")
         value = int(value)
         tree.insertNode(value)
 
 
     elif data_raw == "remove":
-        value = input("Pleace value for delete from tree: ")
+        value = input("Please enter value for delete from tree: ")
         value = int(value)
         tree.deleteNode(value)
 
 
     elif data_raw == "search":
-        value = input("Pleace value for searche from tree: ")
+        value = input("Please enter value for search from tree: ")
         value = int(value)
         tree.searchNode(value)
 
